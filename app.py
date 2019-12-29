@@ -35,15 +35,14 @@ class Queryable(Resource):
 # Habit Class
 class Habit(Queryable):
     def get(self, habit):   
-        result = self.executeQueryJson(f"SELECT ID,habit,occured FROM events WHERE CONVERT(VARCHAR, habit) = '{habit}' ORDER BY occured DESC")   
+        result = self.executeQueryJson(f"SELECT ID,habit,occured FROM habits WHERE CONVERT(VARCHAR, habit) = '{habit}' ORDER BY occured DESC")   
         return result, 200
 
     def post(self, habit):   
-        result = self.executeQueryJson(f"SELECT ID,habit,occured FROM events WHERE CONVERT(VARCHAR, habit) = '{habit}' ORDER BY occured DESC")   
-        return result, 200
+        return self.get(habit)
     
     def put(self, habit):
-        result = self.executeQueryJson(f"INSERT INTO events(habit,occured) OUTPUT INSERTED.id,INSERTED.habit,INSERTED.occured VALUES ('{habit}', '{int(time.time())}')")
+        result = self.executeQueryJson(f"INSERT INTO habits(habit,occured) OUTPUT INSERTED.id,INSERTED.habit,INSERTED.occured VALUES ('{habit}', '{int(time.time())}')")
         return result, 201
     
 # # Create API routes

@@ -12,7 +12,7 @@ app = Flask(__name__)
 api = Api(app)
 
 # Create connection to Azure SQL
-conn = pyodbc.connect(os.environ['SQLAZURECONNSTR_WWIF'])
+conn = pyodbc.connect(os.environ['WWIF'])
 
 class Queryable(Resource):
     def executeQueryJson(self, myquery):
